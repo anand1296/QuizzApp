@@ -5,6 +5,7 @@ import { AppRoutes } from './utils/routes';
 import ProtectedRoute from './utils/protected-routes';
 import PageNotFound from './pages/pageNotFound';
 import Quiz from './components/Quiz';
+import Home from './pages/home';
 
 function App() {
 
@@ -13,8 +14,9 @@ function App() {
         <Routes>
           <Route path={AppRoutes.ANY} element={<PageNotFound />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/" element={<Quiz />} />
-            <Route path={AppRoutes.HOME} element={<Quiz />} />
+            <Route path="/" element={<Home />} />
+            <Route path={AppRoutes.HOME} element={<Home />} />
+            <Route path={AppRoutes.QUIZ} element={<Quiz />} />
           </Route>
         </Routes>
       </MainLayout>

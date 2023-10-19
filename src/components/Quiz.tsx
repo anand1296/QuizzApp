@@ -1,6 +1,8 @@
 const Quiz = () => {
     return (
-        <></>
+        <div className="question-container">
+
+        </div>
     )
 }
 
