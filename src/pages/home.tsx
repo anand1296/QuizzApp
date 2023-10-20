@@ -1,4 +1,10 @@
+import { useNavigate } from "react-router-dom";
+import { AppRoutes } from "../utils/routes";
+
+
 export function Home() {
+
+  const navigate = useNavigate();
 
   return (
     <div className="home">
@@ -11,8 +17,8 @@ export function Home() {
           Quiz
         </div>
       </div>
-      <div className="start-btn">
-        <button>Start</button>
+      <div className="primary-btn">
+        <button className="start-btn" onClick={() => navigate(AppRoutes.QUIZ)}>Start</button>
       </div>
     </div>
   );
