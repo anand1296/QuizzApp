@@ -5,6 +5,7 @@ import Question from "./Question";
 import * as answers from './../utils/answers.json'
 import { useDispatch, useSelector } from "react-redux";
 import { quizState, setNextQuestion, setTotal, updateScore } from "../store/quiz/quiz.slice";
+import CircularProgress from '@mui/material/CircularProgress';
 
 const Quiz = () => {
 
@@ -12,12 +13,14 @@ const Quiz = () => {
     const [questions, setQuestions] = useState<Array<__Question>>([]);
     const activeQuestion  = useSelector((state: {quiz: quizState}) => {
         return state.quiz;
-    })
+    });
+
+    const [progress, setProgress] = useState(0);
 
     useEffect(() => {
         const getData = async () => {
             const resp = await axios.get("/data/questions.json");
-            const questions: Array<__Question> = resp.data;
+            const questions: Array<__Question> = resp.data.questions;
             setQuestions(questions);
             dispatch(setTotal(questions.length));
             dispatch(setNextQuestion({question: questions[0], index: 0}));
@@ -42,7 +45,14 @@ const Quiz = () => {
 
     return (
         <div className="quiz-container">
-            <div className="question-wrapper">
+            <div className="question-container">
+                <div className="progress">
+                    <div className="fill-ring"></div>
+                    <div className="circular-progress">
+                        <CircularProgress variant="determinate" value={25} />
+                    </div>
+                    <div className="progress-text"></div>
+                </div>
               { activeQuestion && <Question question={activeQuestion} submitAnswer={(answer: Array<string>) => submitAnswer}/> }
             </div>
         </div>

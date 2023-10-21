@@ -91,6 +91,7 @@ footer {
 .title {
   display: flex;
   justify-content: center;
+
   .title-circle {
     filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.10));
     color: #FF3B3C;
@@ -115,17 +116,19 @@ footer {
   background: #FF3B3F;
   border: 2px solid #FF3B3F;
   padding: 0.8rem 1.6rem;
-  width: auto;
+  width: inherit;
   border-radius: 80px;
   font-size: 22px;
   font-weight: 600;
   color: #fff;
   font-family: 'Nunito Sans', sans-serif;
   transition: all 0.3s ease-in-out;
+  cursor: pointer;
 
   &.start-btn {
     width: 40%;
   }
+
   &.home-btn {
     margin: 1rem;
   }
@@ -143,14 +146,140 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  .msg {
-  align-items: center;
-  color: #FF3B3C;
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 24px;
-  font-weight: 600;
-  }
-  button {
 
+  .msg {
+    align-items: center;
+    color: #FF3B3C;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  button {}
+}
+
+.quiz-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background: #AF9CF3;
+  background-blend-mode: multiply;
+
+  .question-container {
+    width: 50%;
+    height: 70%;
+    border-radius: 60px 60px 0px 0px;
+    background: #FFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .progress {
+      width: 180px;
+      height: 180px;
+      background: #fff;
+      border-radius: 100%;
+      position: absolute;
+      top: 15%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      .fill-ring {
+        height: 160px;
+        position: absolute;
+        width: 160px;
+        border: 13px solid #F3F4FA;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .circular-progress {
+        height: inherit;
+        width: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        z-index: 2;
+
+        .MuiCircularProgress-root.MuiCircularProgress-determinate {
+          width: 160px !important;
+          height: 160px !important;
+          color: #44B77B !important;
+        }
+      }
+
+    }
+
+    .question {
+      position: relative;
+      top: 20%;
+      height: 80%;
+      padding: 1rem 2rem;
+
+      .text {
+        color: #000;
+        font-family: "Nunito Sans", sans-serif;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+
+      .content-wrapper {
+        position: relative;
+        overflow: auto;
+        height: inherit;
+        padding: 0.5rem 0 3rem 0;
+
+
+        .image-wrapper {
+          padding: 1rem;
+          display: flex;
+          justify-content: center;
+          overflow: hidden;
+          height: 150px;
+          img {
+            height: 100%;
+            box-sizing: border-box;
+            max-width: 100%;
+            max-height: 100%;
+            // width: 100%;
+          }
+        }
+
+        .options-wrapper {
+
+          .option {
+            width: 100%;
+            background-color: #F3F4FA;
+            padding: 0.6rem;
+            margin: 0.4rem 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            .MuiFormControlLabel-root {
+              .MuiFormControlLabel-label {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+      }
+
+      .next-btn {
+        position: absolute;
+        width: 100%;
+        bottom: 0px;
+        left: 0px;
+        padding: 1rem 2rem;
+      }
+    }
   }
 }

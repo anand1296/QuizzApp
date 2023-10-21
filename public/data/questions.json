@@ -2,6 +2,7 @@
   "questions": [
     {
       "id": 111,
+      "image": "https://www.shutterstock.com/image-illustration/caricature-leonardo-dicaprio-american-actor-100nw-2206695899.jpg",
       "text": "A flashing red traffic light signifies that a driver should do what?",
       "options": [
         "stop",
