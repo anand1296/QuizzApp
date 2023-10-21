@@ -33,6 +33,7 @@ const quizSlice = createSlice({
       }
     },
     updateScore(state: quizState) {
+        console.log(state);
       return {
         ...state,
         correct: state.correct+1

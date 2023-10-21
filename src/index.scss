@@ -195,6 +195,23 @@ footer {
         border: 13px solid #F3F4FA;
         border-radius: 50%;
         z-index: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Nunito Sans', sans-serif;
+        font-style: italic;
+        font-weight: 700;
+        color: #999;
+
+        .count {
+          display: flex;
+          align-items: baseline;
+
+          .current-question {
+            color: #000;
+            font-size: 50px;
+          }
+        }
       }
 
       .circular-progress {
@@ -243,6 +260,7 @@ footer {
           justify-content: center;
           overflow: hidden;
           height: 150px;
+
           img {
             height: 100%;
             box-sizing: border-box;
@@ -263,8 +281,19 @@ footer {
             display: flex;
             justify-content: flex-start;
             align-items: center;
+            transition: all 0.2s ease-in-out;
+
+            &:has(input:checked) {
+              border: 2px solid #44B77B;
+            }
+
+            &:hover {
+              border: 2px solid #44B77B;
+            }
 
             .MuiFormControlLabel-root {
+              width: 100%;
+
               .MuiFormControlLabel-label {
                 font-size: 14px;
               }
@@ -279,6 +308,32 @@ footer {
         bottom: 0px;
         left: 0px;
         padding: 1rem 2rem;
+
+        button {
+          position: relative;
+
+          &::after {
+            content: "";
+            position: absolute;
+            // background-image: url("../public/images/icons/right-arrow.svg");
+            background-color: #fff;
+            -webkit-mask: url("../public/images/icons/right-arrow.svg") no-repeat center;
+            mask: url("../public/images/icons/right-arrow.svg") no-repeat center;
+
+            width: 30px;
+            height: 30px;
+            right: 15px;
+            bottom: 7px;
+            background-repeat: no-repeat;
+            transform: scale(0.5);
+          }
+
+          &:hover {
+            &::after {
+              background-color: #FF3B3C;
+            }
+          }
+        }
       }
     }
   }
