@@ -1,8 +1,7 @@
 {
   "questions": [
     {
-      "id": 111,
-      "image": "https://www.shutterstock.com/image-illustration/caricature-leonardo-dicaprio-american-actor-100nw-2206695899.jpg",
+      "id": "q111",
       "text": "A flashing red traffic light signifies that a driver should do what?",
       "options": [
         "stop",
@@ -12,9 +11,9 @@
       ]
     },
     {
-      "id": 112,
+      "id": "q112",
       "text": "A knish is traditionally stuffed with what filling?",
-      "optins": [
+      "options": [
         "potato",
         "creamed corn",
         "lemon custard",
@@ -22,7 +21,7 @@
       ]
     },
     {
-      "id": 113,
+      "id": "q113",
       "text": "A pita is a type of what?",
       "options": [
         "fresh fruit",
@@ -32,7 +31,7 @@
       ]
     },
     {
-      "id": 114,
+      "id": "q114",
       "text": "A portrait that comically exaggerates a person's physical traits is called a what?",
       "image": "https://www.shutterstock.com/image-illustration/caricature-leonardo-dicaprio-american-actor-100nw-2206695899.jpg",
       "options": [
@@ -43,14 +42,15 @@
       ]
     },
     {
-      "id": 115,
+      "id": "q115",
       "text": "Which of the following is a fruit",
       "options": [
         "tomato",
         "potato",
         "apple ",
         "kiwi "
-      ]
+      ],
+      "multiple": true
     }
   ]
 }

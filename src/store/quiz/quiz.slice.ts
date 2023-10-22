@@ -29,10 +29,12 @@ const quizSlice = createSlice({
       return {
         ...state,
         currentQuestion: action.payload.question,
-        currentQuestionIndex: action.payload.index
+        currentQuestionIndex: action.payload.index,
+        correct: action.payload.resetCorrect ? 0 : state.correct
       }
     },
     updateScore(state: quizState) {
+        console.log(state);
       return {
         ...state,
         correct: state.correct+1
