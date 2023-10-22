@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "./../services/axios-interceptor";
 import { useEffect, useState } from "react";
 import { __Question } from "../models/question.model";
 import Question from "./Question";
@@ -35,9 +35,9 @@ const Quiz = () => {
             qId: activeQuestion?.currentQuestion?.id,
             answer: activeQuestion?.currentQuestion?.multiple ? answer : answer[0]
         }
-        // axios.post("/dummyPost", payload).then((resp) => {
+        axios.post("/dummyPost", payload).then((resp) => {
 
-        // }).catch((err) => {
+        }).catch((err) => {
         // console.log(err, answers, payload.qId, answers["q111"], answers[payload.qId as keyof typeof answers]);
         if (activeQuestion.currentQuestionIndex < activeQuestion.total - 1) {
             if (answers[payload.qId as keyof typeof answers].every((item: string) => answer.includes(item))) {
@@ -53,7 +53,7 @@ const Quiz = () => {
             // dispatch(setNextQuestion({question: null, index: -1}));
             // navigate(AppRoutes.RESULT);
         }
-        // });
+        });
     }
 
     const restartQuiz = () => {

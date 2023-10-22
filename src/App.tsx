@@ -6,11 +6,13 @@ import ProtectedRoute from './utils/protected-routes';
 import PageNotFound from './pages/pageNotFound';
 import Quiz from './components/Quiz';
 import Home from './pages/home';
+import Loader from './layout/loader';
 
 function App() {
 
     return (
       <MainLayout>
+        <Loader/>
         <Routes>
           <Route path={AppRoutes.ANY} element={<PageNotFound />} />
           <Route element={<ProtectedRoute />}>
