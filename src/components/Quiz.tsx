@@ -34,11 +34,12 @@ const Quiz = () => {
         getData();
     }, [dispatch])
 
-    const submitAnswer = (answer: Array<string>) => {
-        // console.log(answer, activeQuestion.currentQuestionIndex, activeQuestion.total);
+    const submitAnswer = (answer: Array<string>, timeTaken: number) => {
+        console.log(answer, timeTaken);
         const payload = {
             qId: activeQuestion?.currentQuestion?.id,
-            answer: activeQuestion?.currentQuestion?.multiple ? answer : answer[0]
+            answer: activeQuestion?.currentQuestion?.multiple ? answer : answer[0],
+            timeTaken: timeTaken
         }
         axios.post("/dummyPost", payload).then((resp) => {
             //resp
@@ -87,7 +88,7 @@ const Quiz = () => {
                                     <CircularProgress variant="determinate" value={Math.round(((activeQuestion.currentQuestionIndex+1)/activeQuestion.total)*100)} />
                                 </div>
                             </div>
-                            {activeQuestion && <Question question={activeQuestion} submitAnswer={(answer: Array<string>) => submitAnswer(answer)} />}
+                            {activeQuestion && <Question question={activeQuestion} submitAnswer={(answer: Array<string>, timeTaken: number) => submitAnswer(answer, timeTaken)} />}
                         </>
                 }
             </div>
