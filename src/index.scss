@@ -123,6 +123,10 @@ footer {
   color: #fff;
   font-family: 'Nunito Sans', sans-serif;
   transition: all 0.3s ease-in-out;
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
   cursor: pointer;
 
   &.start-btn {
@@ -169,8 +173,8 @@ footer {
   background-blend-mode: multiply;
 
   .question-container {
-    width: 50%;
-    height: 70%;
+    width: 60%;
+    height: 80%;
     border-radius: 60px 60px 0px 0px;
     background: #FFF;
     display: flex;
@@ -183,7 +187,7 @@ footer {
       background: #fff;
       border-radius: 100%;
       position: absolute;
-      top: 15%;
+      top: 5%;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -236,6 +240,7 @@ footer {
       position: relative;
       top: 20%;
       height: 80%;
+      width: 100%;
       padding: 1rem 2rem;
 
       .text {
@@ -251,8 +256,8 @@ footer {
         position: relative;
         overflow: auto;
         height: inherit;
-        padding: 0.5rem 0 3rem 0;
-
+        padding: 0.5rem 0 1rem 0;
+        max-height: 70%;
 
         .image-wrapper {
           padding: 1rem;
@@ -282,13 +287,14 @@ footer {
             justify-content: flex-start;
             align-items: center;
             transition: all 0.2s ease-in-out;
+            border: 2px solid #F3F4FA;
 
             &:has(input:checked) {
-              border: 2px solid #44B77B;
+              border-color: #44B77B;
             }
 
             &:hover {
-              border: 2px solid #44B77B;
+              border-color: #44B77B;
             }
 
             .MuiFormControlLabel-root {
@@ -332,6 +338,124 @@ footer {
             &::after {
               background-color: #FF3B3C;
             }
+          }
+        }
+      }
+    }
+
+    .result {
+      position: relative;
+      height: 100%;
+      padding: 1rem 2rem;
+
+      .heading {
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 32px;
+        font-weight: 600;
+        height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+      }
+
+      .score-wrapper {
+        position: relative;
+        height: 80%;
+        overflow: auto;
+        .score-meter {
+          transform: scale(0.4);
+          position: relative;
+          display: flex;
+          justify-content: center;
+          margin-top: -100px;
+
+          .score {
+            position: absolute;
+            height: 300px;
+            width: 300px;
+            border-radius: 50%;
+            background-color: #fff;
+            z-index: 3;
+            top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .percent {
+              position: relative;
+              width: 250px;
+              height: 250px;
+              border: 2px solid #EBEDF5;
+              border-radius: 50%;
+              font-family: 'Nunito Sans', sans-serif;
+              font-size: 60px;
+              font-weight: 600;
+              text-indent: 15px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+            }
+          }
+
+          .gradient {
+            position: absolute;
+            z-index: 2;
+          }
+
+          .bg {
+            position: relative;
+            z-index: 1;
+          }
+
+          .pointer {
+            position: absolute;
+            top: 40px;
+            z-index: 2;
+          }
+        }
+
+        .correct-incorrect {
+          display: flex;
+          flex-direction: column;
+          padding: 0 1rem;
+          margin-top: -70px;
+
+          .option {
+            width: 100%;
+            background-color: #F3F4FA;
+            padding: 0.6rem 1rem;
+            margin: 0.4rem 0;
+            border-radius: 10px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+
+            label {
+              .MuiFormControlLabel-label {
+                .count-text {
+                  .count {
+                    font-weight: 600;
+                    padding: 0 0.5rem 0 0;
+                  }
+                }
+              }
+            }
+
+            &.correct {
+              background-color: #bdecd4;
+            }
+            &.incorrect {
+              background-color: #FD8D90;
+            }
+          }
+        }
+
+        .primary-btn.restart {
+          padding: 1rem;
+
+          button {
+            width: 100%;
           }
         }
       }

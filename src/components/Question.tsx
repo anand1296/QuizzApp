@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { quizState } from "../store/quiz/quiz.slice";
 import { FormControlLabel, Checkbox, Radio } from '@mui/material';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
@@ -7,6 +7,8 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioGroup from '@mui/material/RadioGroup';
 
 const Question = ({ question, submitAnswer }: { question: quizState, submitAnswer: (anser: Array<string>) => void }) => {
+
+    const scrollRef = useRef<HTMLDivElement>(null);
 
     const [selectedOptions, setSelectedOptions] = useState<Array<string>>([]);
 
@@ -31,6 +33,7 @@ const Question = ({ question, submitAnswer }: { question: quizState, submitAnswe
     useEffect(() => {
         console.log(question);
         setSelectedOptions([]);
+        scrollRef?.current?.scrollTo({ top: 0, behavior: 'smooth' });
     }, [question])
 
     return (
@@ -38,7 +41,7 @@ const Question = ({ question, submitAnswer }: { question: quizState, submitAnswe
             <div className='text'>
                 {question.currentQuestion?.text}
             </div>
-            <div className='content-wrapper'>
+            <div className='content-wrapper' ref={scrollRef}>
                 {question.currentQuestion?.image && <div className='image-wrapper'>
                     <img src={question.currentQuestion?.image} alt="" />
                 </div>
@@ -68,7 +71,7 @@ const Question = ({ question, submitAnswer }: { question: quizState, submitAnswe
                 </div>
             </div>
             <div className="primary-btn next-btn">
-                <button className="next" onClick={() => submitAnswer(selectedOptions)}>Next</button>
+                <button disabled={!selectedOptions.length} className="next" onClick={() => submitAnswer(selectedOptions)}>Next</button>
             </div>
         </div>
     )
