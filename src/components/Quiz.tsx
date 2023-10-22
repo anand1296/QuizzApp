@@ -11,11 +11,15 @@ import Result from "./Result";
 const Quiz = () => {
 
     const dispatch = useDispatch();
+
     const [questions, setQuestions] = useState<Array<__Question>>([]);
+
+    //fetching current question to be displayed from the store
     const activeQuestion = useSelector((state: { quiz: quizState }) => {
         return state.quiz;
     });
 
+    //to be set true once all questions are answered
     const [showResult, setShowResult] = useState(false);
 
     useEffect(() => {
@@ -24,28 +28,32 @@ const Quiz = () => {
             const questions: Array<__Question> = resp.data.questions;
             setQuestions(questions);
             dispatch(setTotal(questions.length));
+            //to set 1st question from questions list as the current question
             dispatch(setNextQuestion({ question: questions[0], index: 0 }));
         };
         getData();
     }, [dispatch])
 
     const submitAnswer = (answer: Array<string>) => {
-        console.log(answer, activeQuestion.currentQuestionIndex, activeQuestion.total);
+        // console.log(answer, activeQuestion.currentQuestionIndex, activeQuestion.total);
         const payload = {
             qId: activeQuestion?.currentQuestion?.id,
             answer: activeQuestion?.currentQuestion?.multiple ? answer : answer[0]
         }
         axios.post("/dummyPost", payload).then((resp) => {
-
+            //resp
         }).catch((err) => {
-        // console.log(err, answers, payload.qId, answers["q111"], answers[payload.qId as keyof typeof answers]);
+        // writing resp logic is err block for mocking prupose
+
+        //checking if cuurent question is not the last question
         if (activeQuestion.currentQuestionIndex < activeQuestion.total - 1) {
             if (answers[payload.qId as keyof typeof answers].every((item: string) => answer.includes(item))) {
+                //increement correct answers in store
                 dispatch(updateScore())
             }
             dispatch(setNextQuestion({ question: questions[activeQuestion.currentQuestionIndex + 1], index: activeQuestion.currentQuestionIndex + 1 }));
         }
-        else {
+        else {//if current question if last question -> updated correct answers in store and show result
             if (answers[payload.qId as keyof typeof answers].every((item: string) => answer.includes(item))) {
                 dispatch(updateScore())
             }
@@ -57,6 +65,7 @@ const Quiz = () => {
     }
 
     const restartQuiz = () => {
+        //reset questions state
         dispatch(setNextQuestion({question: questions[0], index: 0, resetCorrect: true}));
         setShowResult(false);
     }

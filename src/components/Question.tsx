@@ -8,15 +8,18 @@ import RadioGroup from '@mui/material/RadioGroup';
 
 const Question = ({ question, submitAnswer }: { question: quizState, submitAnswer: (anser: Array<string>) => void }) => {
 
+    //needed to scroll back to top of options list on change of question
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const [selectedOptions, setSelectedOptions] = useState<Array<string>>([]);
 
+    //handling cases of user seledted answer for radio and checkbox
     const onUserSelectionChange = (option: string, type: string) => {
         if (type === 'radio') {
             setSelectedOptions([option])
         }
         else {
+            //in case of checkbox, check if current selection is present in asnwers array
             if (selectedOptions.includes(option)) {
                 const index = selectedOptions.findIndex((item) => item === option);
                 const splicedOptions = selectedOptions.splice(index, 1);
@@ -30,10 +33,10 @@ const Question = ({ question, submitAnswer }: { question: quizState, submitAnswe
         }
     }
 
-    useEffect(() => {
-        console.log(question);
+    useEffect(() => {//will be called every time quetsion is submitted
+        // console.log(question);
         setSelectedOptions([]);
-        scrollRef?.current?.scrollTo({ top: 0, behavior: 'smooth' });
+        scrollRef?.current?.scrollTo({ top: 0, behavior: 'smooth' });//to rest the scroll of options list
     }, [question])
 
     return (
@@ -57,7 +60,6 @@ const Question = ({ question, submitAnswer }: { question: quizState, submitAnswe
                         <RadioGroup
                             aria-labelledby="demo-controlled-radio-buttons-group"
                             name="controlled-radio-buttons-group"
-                            value={selectedOptions[0]}
                             onChange={(event) => onUserSelectionChange(event.target.value, 'radio')}
                         >
                             {question.currentQuestion?.options?.map((option, index) =>

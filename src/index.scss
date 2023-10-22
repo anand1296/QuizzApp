@@ -75,26 +75,35 @@ footer {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+  background: rgba(0, 0, 0, 0.5);
+  /* Semi-transparent dark background */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 9999; /* Ensure the loader appears on top of other content */
+  z-index: 9999;
+  /* Ensure the loader appears on top of other content */
 }
 
 /* Loader styles */
 .loader {
   border: 4px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
-  border-top: 4px solid #3498db; /* Loader color */
+  border-top: 4px solid #3498db;
+  /* Loader color */
   width: 40px;
   height: 40px;
-  animation: spin 2s linear infinite; /* Spinning animation */
+  animation: spin 2s linear infinite;
+  /* Spinning animation */
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 
@@ -153,10 +162,12 @@ footer {
   color: #fff;
   font-family: 'Nunito Sans', sans-serif;
   transition: all 0.3s ease-in-out;
+
   &:disabled {
     pointer-events: none;
     opacity: 0.6;
   }
+
   cursor: pointer;
 
   &.start-btn {
@@ -205,7 +216,7 @@ footer {
   .question-container {
     width: 60%;
     height: 80%;
-    border-radius: 60px 60px 0px 0px;
+    border-radius: 40px 40px 0px 0px;
     background: #FFF;
     display: flex;
     flex-direction: column;
@@ -286,7 +297,8 @@ footer {
         position: relative;
         overflow: auto;
         padding: 0.5rem 0;
-        height: 260px;;
+        height: 260px;
+        ;
 
         .image-wrapper {
           padding: 1rem;
@@ -317,6 +329,7 @@ footer {
             align-items: center;
             transition: all 0.2s ease-in-out;
             border: 2px solid #F3F4FA;
+            text-transform: capitalize;
 
             &:has(input:checked) {
               border-color: #44B77B;
@@ -375,22 +388,25 @@ footer {
     .result {
       position: relative;
       height: 100%;
-      padding: 1rem 2rem;
+      // padding: 1rem 2rem;
+      width: 100%;
 
       .heading {
         font-family: 'Nunito Sans', sans-serif;
         font-size: 32px;
         font-weight: 600;
         height: 20%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
 
       .score-wrapper {
         position: relative;
         height: 80%;
         overflow: auto;
+        padding: 0 1rem;
+
         .score-meter {
           transform: scale(0.4);
           position: relative;
@@ -435,6 +451,7 @@ footer {
           .bg {
             position: relative;
             z-index: 1;
+            // transform: scale(1.1);
           }
 
           .pointer {
@@ -448,7 +465,7 @@ footer {
           display: flex;
           flex-direction: column;
           padding: 0 1rem;
-          margin-top: -70px;
+          margin-top: -90px;
 
           .option {
             width: 100%;
@@ -474,6 +491,7 @@ footer {
             &.correct {
               background-color: #bdecd4;
             }
+
             &.incorrect {
               background-color: #FD8D90;
             }
@@ -481,10 +499,53 @@ footer {
         }
 
         .primary-btn.restart {
-          padding: 1rem;
+          padding: 1rem 2rem;
+          position: absolute;
+        width: 100%;
+        bottom: 0;
+        left: 0;
 
           button {
             width: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 240px) and (max-width: 479px) {
+  .result .score-wrapper {
+    .score-meter .bg {
+      transform: scale(1.35) !important;
+    }
+  }
+}
+
+
+/* Media Query for Mobile Devices */
+@media (max-width: 480px), (min-width: 481px) and (max-width: 992px) {
+  .question-container {
+    width: 100% !important;
+
+    .question {
+      top: 10% !important;
+      height: 90% !important;
+
+      .text {
+        height: 10vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .content-wrapper {
+        padding: 0.4rem 0 !important;
+        height: 50vh !important;
+
+        .options-wrapper {
+          .option {
+            padding: 1rem 0.6rem !important;
           }
         }
       }

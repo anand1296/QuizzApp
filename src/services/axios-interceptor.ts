@@ -5,9 +5,7 @@ import store from '../store/store';
 
 axios.interceptors.request.use(function (config) {
 
-    // spinning start to show
-    // UPDATE: Add this code to show global loading indicator
-    // document.body.classList.add('loading-indicator');
+    //set loader state to true in store
     store.dispatch(setLoader(true));
 
     // const token = window.localStorage.token;
@@ -21,13 +19,12 @@ axios.interceptors.request.use(function (config) {
 
 axios.interceptors.response.use(function (response) {
 
-    // spinning hide
-    // UPDATE: Add this code to hide global loading indicator
-    // document.body.classList.remove('loading-indicator');
+    //set loader state to false in store
     store.dispatch(setLoader(false));
 
     return response;
 }, function (error) {
+    //set loader state to false in store
     store.dispatch(setLoader(false));
     return Promise.reject(error);
 });

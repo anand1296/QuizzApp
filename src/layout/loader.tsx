@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 
 const Loader = () => {
+
+    //fetching loader state from store
     const isLoading = useSelector((state: {loader: {loading: boolean}}) => state.loader.loading); // Access loader state from Redux store
 
     if (!isLoading) {
