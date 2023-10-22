@@ -6,12 +6,13 @@ import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import RadioGroup from '@mui/material/RadioGroup';
 
-const Question = ({ question, submitAnswer }: { question: quizState, submitAnswer: (anser: Array<string>) => void }) => {
+const Question = ({ question, submitAnswer }: { question: quizState, submitAnswer: (answer: Array<string>, timeTaken: number) => void }) => {
 
     //needed to scroll back to top of options list on change of question
     const scrollRef = useRef<HTMLDivElement>(null);
 
     const [selectedOptions, setSelectedOptions] = useState<Array<string>>([]);
+    const [timeUntilSubmit, setTimeUntilSubmit] = useState(0);
 
     //handling cases of user seledted answer for radio and checkbox
     const onUserSelectionChange = (option: string, type: string) => {
@@ -37,6 +38,13 @@ const Question = ({ question, submitAnswer }: { question: quizState, submitAnswe
         // console.log(question);
         setSelectedOptions([]);
         scrollRef?.current?.scrollTo({ top: 0, behavior: 'smooth' });//to rest the scroll of options list
+        let timer = setInterval(() => {
+            setTimeUntilSubmit((timeUntilSubmit) => timeUntilSubmit + 1);
+        }, 1000);
+
+        return () => {
+            clearInterval(timer);
+        };
     }, [question])
 
     return (
@@ -73,7 +81,7 @@ const Question = ({ question, submitAnswer }: { question: quizState, submitAnswe
                 </div>
             </div>
             <div className="primary-btn next-btn">
-                <button disabled={!selectedOptions.length} className="next" onClick={() => submitAnswer(selectedOptions)}>Next</button>
+                <button disabled={!selectedOptions.length} className="next" onClick={() => { submitAnswer(selectedOptions, timeUntilSubmit); setTimeUntilSubmit(0); }}>Next</button>
             </div>
         </div>
     )
