@@ -465,8 +465,9 @@ footer {
 
           .pointer {
             position: absolute;
-            top: 40px;
+            top: -40px;
             z-index: 2;
+            transform-origin: bottom;
           }
         }
 
