@@ -17,14 +17,14 @@ body,
 }
 
 html {
-  margin:0;
+  margin: 0;
   padding: 0
 }
 
 body {
   position: absolute;
   margin: 0;
-  padding:0;
+  padding: 0;
   // font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   //   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
   //   sans-serif;
@@ -70,7 +70,7 @@ footer {
   height: 100%;
   width: 100%;
   background: linear-gradient(180deg, rgba(175, 156, 243, 0.00) 7.92%, #AF9CF3 86.48%);
-  background-blend-mode: multiply;
+  // background-blend-mode: multiply;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -117,7 +117,7 @@ footer {
 
 .question-container {
   background: #AF9CF3;
-  background-blend-mode: multiply;
+  // background-blend-mode: multiply;
 }
 
 .logo {
@@ -220,7 +220,10 @@ footer {
   justify-content: flex-end;
   align-items: center;
   background: #AF9CF3;
-  background-blend-mode: multiply;
+  // background-blend-mode: multiply;
+  background-image: url("../public/images/confetti.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
 
   .question-container {
     width: 60%;
@@ -342,10 +345,13 @@ footer {
 
             &:has(input:checked) {
               border-color: #44B77B;
+              background-color: #fff;
             }
 
-            &:hover, &:active {
+            &:hover,
+            &:active {
               border-color: #44B77B;
+              background-color: #fff;
             }
 
             .MuiFormControlLabel-root {
@@ -404,7 +410,7 @@ footer {
         font-family: 'Nunito Sans', sans-serif;
         font-size: 32px;
         font-weight: 600;
-        height: 20%;
+        height: 15%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -412,70 +418,107 @@ footer {
 
       .score-wrapper {
         position: relative;
-        height: 80%;
+        height: 85%;
         overflow: auto;
         padding: 0 1rem;
 
         .score-meter {
-          transform: scale(0.4);
           position: relative;
           display: flex;
           justify-content: center;
-          margin-top: -100px;
+          align-items: start;
+          height: 180px;
 
-          .score {
-            position: absolute;
-            height: 300px;
-            width: 300px;
-            border-radius: 50%;
-            background-color: #fff;
-            z-index: 3;
-            top: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+          .half-circle {
+            position: relative;
+            width: 200px;
+            height: 100px;
+            /* as the half of the width */
+            border-top-left-radius: 110px;
+            /* 100px of height + 10px of border */
+            border-top-right-radius: 110px;
+            /* 100px of height + 10px of border */
+            // background: -webkit-linear-gradient(left top, crimson 0%, #f90 100%);
+            border: double 10px transparent;
+            // border-radius: 80px;
+            background-image: linear-gradient(white, white), radial-gradient(circle at left, #FF3B3F, #FFD033 50%, #44B77B);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            // border-image-source: linear-gradient(0deg, #44B77B, #FFD033 50%, #FF3B3F);
 
-            .percent {
+            .bg-1 {
               position: relative;
-              width: 250px;
-              height: 250px;
-              border: 2px solid #EBEDF5;
-              border-radius: 50%;
-              font-family: 'Nunito Sans', sans-serif;
-              font-size: 60px;
-              font-weight: 600;
-              text-indent: 15px;
               display: flex;
               justify-content: center;
               align-items: center;
-
+              z-index: 1;
+              border-radius: 50%;
+              background-color: #EBEDF5;
+              width: 180px;
+              height: 180px;
             }
-          }
 
-          .gradient {
-            position: absolute;
-            z-index: 2;
-          }
+            .score {
+              height: 120px;
+              width: 120px;
+              border-radius: 50%;
+              background-color: #fff;
+              // z-index: 3;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              box-shadow: 0px 20px 20px -4px #c7c4c4;
+              transform: translate(-50%, -50%);
+              top: 110%;
+              left: 50%;
+              position: absolute;
+              z-index: 2;
 
-          .bg {
-            position: relative;
-            z-index: 1;
-            // transform: scale(1.1);
-          }
+              .percent {
+                position: relative;
+                width: 100px;
+                height: 100px;
+                border: 2px solid #EBEDF5;
+                border-radius: 50%;
+                font-family: 'Nunito Sans', sans-serif;
+                font-size: 34px;
+                font-weight: 600;
+                text-indent: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
 
-          .pointer {
-            position: absolute;
-            top: -40px;
-            z-index: 2;
-            transform-origin: bottom;
+              }
+            }
+
+            .pointer {
+              position: absolute;
+              z-index: 2;
+              top: -260%;
+              left: 10px;
+              transform-origin: bottom;
+            }
+
+            .pentagon {
+              position: absolute;
+              /* left: 180px; */
+              left: -10px;
+              top: 85px;
+              width: 200px;
+              height: 100px;
+              z-index: 1;
+              background: #fff;
+              clip-path: polygon(50% 0, 100% 58%, 81% 100%, 19% 100%, 0 58%);
+            }
           }
         }
 
         .correct-incorrect {
           display: flex;
           flex-direction: column;
-          padding: 0 1rem;
-          margin-top: -90px;
+          padding: 0.4rem 1rem;
+          z-index: 2;
+          position: relative;
 
           .option {
             width: 100%;
@@ -511,9 +554,9 @@ footer {
         .primary-btn.restart {
           padding: 1rem 2rem;
           position: absolute;
-        width: 100%;
-        bottom: 0;
-        left: 0;
+          width: 100%;
+          bottom: 0;
+          left: 0;
 
           button {
             width: 100%;
@@ -534,7 +577,8 @@ footer {
 
 
 /* Media Query for Mobile Devices */
-@media (max-width: 480px), (min-width: 481px) and (max-width: 992px) {
+@media (max-width: 480px),
+(min-width: 481px) and (max-width: 992px) {
   .question-container {
     width: 100% !important;
 
@@ -556,10 +600,13 @@ footer {
         .options-wrapper {
           .option {
             padding: 1rem 0.6rem !important;
+
             &:has(input:checked) {
               border-color: #44B77B !important;
             }
-            &:hover, &:active {
+
+            &:hover,
+            &:active {
               border-color: inherit !important;
             }
           }
