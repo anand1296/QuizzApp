@@ -35,7 +35,7 @@ const Quiz = () => {
     }, [dispatch])
 
     const submitAnswer = (answer: Array<string>, timeTaken: number) => {
-        console.log(answer, timeTaken);
+        // console.log(answer, timeTaken);
         const payload = {
             qId: activeQuestion?.currentQuestion?.id,
             answer: activeQuestion?.currentQuestion?.multiple ? answer : answer[0],
